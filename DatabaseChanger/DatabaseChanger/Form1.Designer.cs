@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cboUUID = new System.Windows.Forms.ComboBox();
             this.cboDatacenter = new System.Windows.Forms.ComboBox();
             this.btnApply = new System.Windows.Forms.Button();
@@ -77,6 +78,7 @@
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.cboDatacenter);
             this.Controls.Add(this.cboUUID);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Change Datacenter";
             this.ResumeLayout(false);
