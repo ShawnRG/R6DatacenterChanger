@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +22,7 @@ namespace DatabaseChanger
         private readonly string[] hints = new[]
             {"default", "eus", "cus", "scus", "wus", "sbr", "neu", "weu", "eas", "seas", "eau", "wja"};
         
-        public Form1() 
+        public Form1()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -39,15 +39,20 @@ namespace DatabaseChanger
             var directories = Directory.GetDirectories(PATH);
             
             
-            getNames();
             
-            //cboUUID.SelectedIndex = 0;
+            foreach (string directory in directories)
+            {
+                
+                cboUUID.Items.Add(directory.Remove(0,PATH.Length+1));
+            }
+            cboUUID.SelectedIndex = 0;
             cboDatacenter.SelectedIndex = 0;
             lblStatus.Text = "";
             
-            //cboDatacenter.SelectedItem = getCurrentDatacenter();
+            cboDatacenter.SelectedItem = getCurrentDatacenter();
             
-           
+            
+
 
         }
 
@@ -84,24 +89,10 @@ namespace DatabaseChanger
         {
             cboDatacenter.SelectedItem = getCurrentDatacenter();
         }
-
-        private async void getNames()
-        {
-            lblStatus.Text = "test";
-        }
         
-        public string GetAsync(string uri)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            
-            using(HttpWebResponse response = (HttpWebResponse) request.GetResponse())
-            using(Stream stream = response.GetResponseStream())
-            using(StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
-        }
+       
+        
+     
         
     }
 }
